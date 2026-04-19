@@ -1,1 +1,0 @@
-ffmpeg -loop 1 -i "cover.JPG" -i "The Cranberries - Linger.mp3" -vf scale=700:700 -c:v libx264 -preset ultrafast -tune stillimage -r 1 -c:a aac -b:a 192k -shortest "..\..\output2.mp4"
