@@ -23,9 +23,9 @@ rem )
 rem in ocarina
 
 for /r "..\music-on-github" %f in (*.mp3) do (
-  ffmpeg -n -i "%f" -an -vcodec copy "vids\%~nf.jpg"
+  ffmpeg -n -i "%f" -an -vcodec copy "pics\%~nf.jpg"
 )
 
 for /r "..\music-on-github" %f in (*.mp3) do (
-  ffmpeg -n -loop 1 -i "vids\%~nf.jpg" -i "%f" -c:v libx264 -pix_fmt yuv420p -movflags +faststart -tune stillimage -c:a copy -shortest "videos\%~nf.mp4"
+  ffmpeg -n -loop 1 -i "pics\%~nf.jpg" -i "%f" -c:v libx264 -pix_fmt yuv420p -movflags +faststart -tune stillimage -c:a copy -shortest "videos\%~nf.mp4"
 )
