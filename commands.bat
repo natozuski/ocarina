@@ -9,7 +9,12 @@ for /r "..\music-on-github" %f in (*.mp3) do (
   ffmpeg -n -loop 1 -framerate 1 -i "pics\%~nf.jpg" -i "%f" -c:v libx264 -preset ultrafast -crf 30 -tune stillimage -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 192k -shortest "videos\%~nf.mp4"
 )
 
-rem thumbnails
+rem resize images TEMPLATE
+rem
+
+ffmpeg -i input.png -vf scale=WIDTH:HEIGHT output.png
+
+rem windows thumbnails
 
 ffmpeg -i input.mp4 -i thumbnail.png ^
   -map 0 -map 1 ^
@@ -17,6 +22,11 @@ ffmpeg -i input.mp4 -i thumbnail.png ^
   -c:v:1 png ^
   -disposition:v:1 attached_pic ^
   output.mp4
+
+rem first frame
+
+ffmpeg -i input.mp4 -i thumbnail.jpg -map 0 -map 1 -c copy ^
+  -disposition:v:1 attached_pic output.mp4
 
 rem for editing videos to work everywhere
 
