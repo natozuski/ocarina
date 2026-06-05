@@ -16,7 +16,7 @@ ffmpeg -i input.png -vf scale=WIDTH:HEIGHT output.png
 
 rem windows thumbnails
 
-ffmpeg -i input.mp4 -i thumbnail.png ^
+ffmpeg -i input.mp4 -i thumbnail.jpg ^
   -map 0 -map 1 ^
   -c copy ^
   -c:v:1 png ^
