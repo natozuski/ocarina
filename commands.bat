@@ -23,20 +23,10 @@ ffmpeg -i input.mp4 -i thumbnail.jpg ^
   -disposition:v:1 attached_pic ^
   output.mp4
 
-
-rem
-rem first frame
-rem
-
-
-ffmpeg -i input.mp4 -i thumbnail.jpg -map 0 -map 1 -c copy ^
-  -disposition:v:1 attached_pic output.mp4
-
 rem
 rem for editing videos to work everywhere
 rem
 rem
-
 
 ffmpeg -y ^
 -i "input.mp4" ^
