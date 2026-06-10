@@ -29,7 +29,7 @@ rem
 rem
 
 ffmpeg -y ^
--i "input.mp4" ^
+-i "input_unfixed.mp4" ^
 -c:v libx264 ^
 -profile:v high ^
 -level 4.1 ^
@@ -47,4 +47,4 @@ ffmpeg -y ^
 -b:a 192k ^
 -ar 48000 ^
 -ac 2 ^
-"input_fixed.mp4"
+"input.mp4"
