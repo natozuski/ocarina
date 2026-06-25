@@ -13,6 +13,17 @@ rem resize images TEMPLATE
 rem
 
 ffmpeg -i input.png -vf scale=WIDTH:HEIGHT output.png
+ffmpeg -i input.png -vf "scale='if(lt(iw,ih),3000,-1)':'if(lt(iw,ih),-1,3000)'" output.png
+
+rem
+rem resize images
+rem (PNG version)
+rem works in current dir MUST MAKE enlarged\ dir beforehand
+
+for /r "." %f in (*.png) do (
+  ffmpeg -n -i "%f" -vf "scale='if(lt(iw,ih),3000,-1)':'if(lt(iw,ih),-1,3000)'" "enlarged\%~nf.png"
+)
+
 
 rem windows thumbnails
 
