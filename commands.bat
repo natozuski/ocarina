@@ -27,9 +27,10 @@ rem
 rem resize images
 rem (PNG version)
 rem works in current dir MUST MAKE enlarged\ dir beforehand
+rem max png compression (png's do not lose quality)
 
 for /r "." %f in (*.png) do (
-  ffmpeg -n -i "%f" -vf "scale='if(lt(iw,ih),3000,-1)':'if(lt(iw,ih),-1,3000)'" "enlarged\%~nf.png"
+  ffmpeg -n -i "%f" -vf "scale='if(lt(iw,ih),3000,-1)':'if(lt(iw,ih),-1,3000)'" -compression_level 100 "enlarged\%~nf.png"
 )
 
 
