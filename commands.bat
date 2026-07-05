@@ -33,20 +33,10 @@ for /r "." %f in (*.png) do (
   ffmpeg -n -i "%f" -vf "scale='if(lt(iw,ih),3000,-1)':'if(lt(iw,ih),-1,3000)'" -compression_level 100 "enlarged\%~nf.png"
 )
 
-
-rem windows thumbnails
-
-ffmpeg -i input.mp4 -i thumbnail.jpg ^
-  -map 0 -map 1 ^
-  -c copy ^
-  -c:v:1 png ^
-  -disposition:v:1 attached_pic ^
-  output.mp4
-
 rem
 rem for editing videos to work everywhere
 rem
-rem
+rem for windows thumbnails
 
 ffmpeg -y ^
 -i "input_unfixed.mp4" ^
@@ -68,3 +58,10 @@ ffmpeg -y ^
 -ar 48000 ^
 -ac 2 ^
 "input.mp4"
+
+ffmpeg -i input.mp4 -i thumbnail.jpg ^
+  -map 0 -map 1 ^
+  -c copy ^
+  -c:v:1 png ^
+  -disposition:v:1 attached_pic ^
+  output.mp4
