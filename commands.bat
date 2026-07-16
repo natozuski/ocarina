@@ -26,21 +26,19 @@ for /r "..\prima_prime" %f in (*.mp3) do (
   ffmpeg -n -loop 1 -framerate 1 -i "pics\%~nf.jpg" -i "%f" -c:v libx264 -preset ultrafast -crf 30 -tune stillimage -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 192k -shortest "videos\%~nf.mp4"
 )
 
+rem
+rem
+rem make video into GIF
+rem
+rem
+
+ffmpeg -ss 00:00:00.000 -t 00:00:00.000 -i input.mp4 -vf "fps=15,scale=640:-1:flags=lanczos" output.gif
+
 rem resize images TEMPLATE
 rem
 
 ffmpeg -i input.png -vf scale=WIDTH:HEIGHT output.png
 ffmpeg -i input.png -vf "scale='if(lt(iw,ih),3000,-1)':'if(lt(iw,ih),-1,3000)'" output.png
-
-rem
-rem resize images
-rem (PNG version)
-rem works in current dir MUST MAKE enlarged\ dir beforehand
-rem max png compression (png's do not lose quality)
-
-for /r "." %f in (*.png) do (
-  ffmpeg -n -i "%f" -vf "scale='if(lt(iw,ih),3000,-1)':'if(lt(iw,ih),-1,3000)'" -compression_level 100 "enlarged\%~nf.png"
-)
 
 rem
 rem for editing videos to work everywhere
