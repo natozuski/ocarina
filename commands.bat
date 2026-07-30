@@ -44,6 +44,8 @@ rem
 rem for editing videos to work everywhere
 rem
 rem for windows thumbnails
+rem
+rem dont run in one go
 
 ffmpeg -y ^
 -i "input_unfixed.mp4" ^
