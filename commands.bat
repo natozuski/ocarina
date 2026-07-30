@@ -66,9 +66,9 @@ ffmpeg -y ^
 -ac 2 ^
 "input.mp4"
 
-ffmpeg -i input.mp4 -i thumbnail.jpg ^
-  -map 0 -map 1 ^
-  -c copy ^
-  -c:v:1 png ^
-  -disposition:v:1 attached_pic ^
-  output.mp4
+ffmpeg -i "input.mp4" -i "thumbnail.jpg" ^
+-map 0 -map 1 ^
+-c copy ^
+-c:v:1 png ^
+-disposition:v:1 attached_pic ^
+"output.mp4"
